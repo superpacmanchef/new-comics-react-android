@@ -34,21 +34,7 @@ const HomeStackScreen = () => {
                 headerTintColor: 'white',
             })}
         >
-            <HomeStack.Screen
-                name="Home"
-                component={Home}
-                options={{
-                    headerRight: () => (
-                        <Box mr="2">
-                            <MaterialCommunityIcons
-                                name="filter"
-                                color="white"
-                                size={30}
-                            />
-                        </Box>
-                    ),
-                }}
-            />
+            <HomeStack.Screen name="Home" component={Home} />
             <HomeStack.Screen
                 name="FocusComic"
                 component={FocusComic}
