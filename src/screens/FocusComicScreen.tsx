@@ -46,8 +46,6 @@ const FocusComic = (props: FocusComicScreen) => {
     const [t, updateT] = useState(true)
 
     useEffect(() => {
-        console.log('bums2')
-
         updateT(
             !collection
                 .map((collectionComic: Comic_ShortBoxed_SplitTitle_Image) => {
@@ -80,6 +78,68 @@ const FocusComic = (props: FocusComicScreen) => {
                         resizeMode={'contain'}
                         m="3"
                     />
+
+                    <Box flexDir={'row'}>
+                        {user &&
+                            (pullList.length > 0 &&
+                            !pullList.includes(comic.title.toUpperCase()) ? (
+                                <Button
+                                    flex="1"
+                                    mx="4"
+                                    onPress={() => {
+                                        addComicToPullList(
+                                            comic.title,
+                                            pullListMutate
+                                        )
+                                    }}
+                                >
+                                    Add to Pull List
+                                </Button>
+                            ) : (
+                                <Button
+                                    flex="1"
+                                    mx="4"
+                                    onPress={() => {
+                                        removeComicFromPullList(
+                                            comic.title,
+                                            pullListMutate
+                                        )
+                                    }}
+                                >
+                                    Remove From Pull List
+                                </Button>
+                            ))}
+
+                        {user &&
+                            (t ? (
+                                <Button
+                                    flex="1"
+                                    mx="4"
+                                    onPress={() => {
+                                        addComicToCollection(
+                                            comic,
+                                            collectionMutate
+                                        )
+                                    }}
+                                >
+                                    Add to Collections
+                                </Button>
+                            ) : (
+                                <Button
+                                    flex="1"
+                                    mx="4"
+                                    onPress={() => {
+                                        removeComicFromCollection(
+                                            comic,
+                                            collectionMutate
+                                        )
+                                    }}
+                                >
+                                    Remove From Collection
+                                </Button>
+                            ))}
+                    </Box>
+
                     <Box w="full" my="2">
                         <InfoBlock
                             title="Description"
@@ -92,57 +152,6 @@ const FocusComic = (props: FocusComicScreen) => {
                             data={comic.release_date}
                         />
                     </Box>
-
-                    {user &&
-                        (pullList.length > 0 &&
-                        !pullList.includes(comic.title.toUpperCase()) ? (
-                            <Button
-                                onPress={() => {
-                                    addComicToPullList(
-                                        comic.title,
-                                        pullListMutate
-                                    )
-                                }}
-                            >
-                                Add to Pull List
-                            </Button>
-                        ) : (
-                            <Button
-                                onPress={() => {
-                                    removeComicFromPullList(
-                                        comic.title,
-                                        pullListMutate
-                                    )
-                                }}
-                            >
-                                Remove From Pull List
-                            </Button>
-                        ))}
-
-                    {user &&
-                        (t ? (
-                            <Button
-                                onPress={() => {
-                                    addComicToCollection(
-                                        comic,
-                                        collectionMutate
-                                    )
-                                }}
-                            >
-                                Add to Collections
-                            </Button>
-                        ) : (
-                            <Button
-                                onPress={() => {
-                                    removeComicFromCollection(
-                                        comic,
-                                        collectionMutate
-                                    )
-                                }}
-                            >
-                                Remove From Collection
-                            </Button>
-                        ))}
                 </Center>
             </Box>
         </ScrollView>

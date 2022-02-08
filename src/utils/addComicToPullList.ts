@@ -1,5 +1,5 @@
 import axios from 'axios'
-const link = 'http://edc0-82-20-31-7.ngrok.io'
+const link = 'http://1833-82-20-31-7.ngrok.io'
 
 export default (
     comicTitle: string,

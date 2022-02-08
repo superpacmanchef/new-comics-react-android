@@ -4,7 +4,7 @@ import React from 'react'
 import Home from '../../screens/Home'
 import Login from '../../screens/Login'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import { Box } from 'native-base'
+import { Box, Button } from 'native-base'
 import FocusComic from '../../screens/FocusComicScreen'
 import { CardStyleInterpolators } from '@react-navigation/stack'
 import Profile from '../../screens/Profile'
@@ -34,7 +34,21 @@ const HomeStackScreen = () => {
                 headerTintColor: 'white',
             })}
         >
-            <HomeStack.Screen name="Home" component={Home} />
+            <HomeStack.Screen
+                name="Home"
+                component={Home}
+                options={{
+                    headerRight: () => (
+                        <Box mr="2">
+                            <MaterialCommunityIcons
+                                name="filter"
+                                color="white"
+                                size={30}
+                            />
+                        </Box>
+                    ),
+                }}
+            />
             <HomeStack.Screen
                 name="FocusComic"
                 component={FocusComic}

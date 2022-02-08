@@ -1,7 +1,9 @@
-import { Box, Center, FlatList, Text, Button } from 'native-base'
+import { Box, FlatList, Text, Button } from 'native-base'
 import React, { useState } from 'react'
 import ComicComponent from '../components/Comics/comicComponent'
 import { useCollection, usePull, useUser } from '../lib/hooks'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import removeComicFromPullList from '../utils/removeComicFromPullList'
 
 const Profile = () => {
     const [user, { mutate }] = useUser()
@@ -42,12 +44,36 @@ const Profile = () => {
             {toShow === 'Collection' ? (
                 <ComicComponent chosenWeeksComicsFilter={collection} />
             ) : (
-                <Box mx="2" mt="3">
+                <Box mx="2" my="4" flex="1">
                     <FlatList
                         data={pullList}
                         keyExtractor={(item, index) => item}
                         renderItem={(item) => {
-                            return <Text color="white">{item.item}</Text>
+                            return (
+                                <Box flexDir="row" mb="6">
+                                    <Text
+                                        flex="1"
+                                        mr="4"
+                                        fontSize={20}
+                                        color="white"
+                                    >
+                                        {item.item}
+                                    </Text>
+                                    <MaterialCommunityIcons
+                                        onPress={() => {
+                                            console.log('bums')
+
+                                            removeComicFromPullList(
+                                                item.item,
+                                                pullListMutate
+                                            )
+                                        }}
+                                        name="delete-forever"
+                                        color="red"
+                                        size={30}
+                                    />
+                                </Box>
+                            )
                         }}
                     />
                 </Box>

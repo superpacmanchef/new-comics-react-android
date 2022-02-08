@@ -1,7 +1,7 @@
 import { Box, Button, Input, Text } from 'native-base'
 import React, { useState } from 'react'
 import { useUser } from '../lib/hooks'
-const link = 'http://edc0-82-20-31-7.ngrok.io'
+const link = 'http://1833-82-20-31-7.ngrok.io'
 
 const Login = () => {
     const [inputEmail, updateInputEmail] = useState('')
