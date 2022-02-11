@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native'
 import { Center, Image, Box, Text, Button } from 'native-base'
 import React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useCollection, usePull, useUser } from '../../lib/hooks'
 import addComicToPullList from '../../utils/addComicToPullList'
 import removeComicFromPullList from '../../utils/removeComicFromPullList'
@@ -32,6 +33,16 @@ const ComicTile = (props: ComicTileProps) => {
                 borderRadius={5}
                 style={styles.outerView}
             >
+                {pullList && pullList.includes(comic.title.toUpperCase()) && (
+                    <Box style={{ zIndex: 35 }}>
+                        <MaterialCommunityIcons
+                            style={{ position: 'absolute' }}
+                            name={'star'}
+                            size={30}
+                            color={'black'}
+                        />
+                    </Box>
+                )}
                 <Center>
                     <Image
                         source={{ uri: comic.image }}

@@ -61,8 +61,6 @@ const Profile = () => {
                                     </Text>
                                     <MaterialCommunityIcons
                                         onPress={() => {
-                                            console.log('bums')
-
                                             removeComicFromPullList(
                                                 item.item,
                                                 pullListMutate

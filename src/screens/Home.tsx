@@ -15,7 +15,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import ComicComponent from '../components/Comics/comicComponent'
 import { HomeStackParamList } from '../components/Nav/Nav'
 import filterComicPublishers from '../utils/filterComicPublishers'
-const link = 'http://1833-82-20-31-7.ngrok.io'
+const link = 'http://455c-82-20-31-7.ngrok.io'
 
 export type HomeScreenProps = NativeStackScreenProps<any, any>
 
@@ -95,7 +95,7 @@ const Home = (props: any) => {
                     updateShowModal(false)
                 }}
             >
-                <Modal.Content maxWidth="400px" height={'300px'} bg="muted.500">
+                <Modal.Content maxWidth="400px" height={'300px'} bg="muted.600">
                     <Modal.CloseButton bg="white" />
 
                     <Modal.Header>
@@ -147,13 +147,22 @@ const Home = (props: any) => {
                             >
                                 <Select.Item label="All" value="ALL" />
                                 <Select.Item
-                                    label="MARVEL"
+                                    label="Marvel"
                                     value="MARVEL COMICS"
                                 />
+                                <Select.Item
+                                    label="Image"
+                                    value="IMAGE COMICS"
+                                />
+                                <Select.Item
+                                    label="Dark Horse"
+                                    value="DARK HORSE COMICS"
+                                />
+                                <Select.Item label="IDW" value="IDW COMICS" />
                             </Select>
                         </FormControl>
                     </Modal.Body>
-                    <Modal.Footer bg="muted.500">
+                    <Modal.Footer bg="muted.600">
                         <Button
                             mx="auto"
                             w="24"

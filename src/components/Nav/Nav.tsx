@@ -9,6 +9,7 @@ import FocusComic from '../../screens/FocusComicScreen'
 import { CardStyleInterpolators } from '@react-navigation/stack'
 import Profile from '../../screens/Profile'
 import { useUser } from '../../lib/hooks'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
 export type HomeStackParamList = {
     Home: undefined
@@ -24,7 +25,9 @@ const HomeStack = createStackNavigator<HomeStackParamList>()
 const LoginStack = createStackNavigator()
 const ProfileStack = createStackNavigator<ProfileStackParamList>()
 
-const HomeStackScreen = () => {
+type FocusComicScreen = NativeStackScreenProps<HomeStackParamList, 'FocusComic'>
+
+const HomeStackScreen = (props: FocusComicScreen) => {
     return (
         <HomeStack.Navigator
             screenOptions={({ route }) => ({
@@ -41,6 +44,7 @@ const HomeStackScreen = () => {
                 options={{
                     cardStyleInterpolator:
                         CardStyleInterpolators.forBottomSheetAndroid,
+                    headerTitle: 'Comic Focus',
                 }}
             />
         </HomeStack.Navigator>

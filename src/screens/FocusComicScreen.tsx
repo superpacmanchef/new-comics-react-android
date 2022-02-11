@@ -46,6 +46,10 @@ const FocusComic = (props: FocusComicScreen) => {
     const [t, updateT] = useState(true)
 
     useEffect(() => {
+        props.navigation.setOptions({ headerTitle: comic.title })
+    }, [])
+
+    useEffect(() => {
         updateT(
             !collection
                 .map((collectionComic: Comic_ShortBoxed_SplitTitle_Image) => {
@@ -81,7 +85,7 @@ const FocusComic = (props: FocusComicScreen) => {
 
                     <Box flexDir={'row'}>
                         {user &&
-                            (pullList.length > 0 &&
+                            (pullList &&
                             !pullList.includes(comic.title.toUpperCase()) ? (
                                 <Button
                                     flex="1"
@@ -146,7 +150,7 @@ const FocusComic = (props: FocusComicScreen) => {
                             data={comic.description}
                         />
                         <InfoBlock title="Creators" data={comic.creators} />
-                        <InfoBlock title="Diamond ID" data={comic.diamond_id} />
+                        <InfoBlock title="Publisher" data={comic.publisher} />
                         <InfoBlock
                             title="Release Date"
                             data={comic.release_date}

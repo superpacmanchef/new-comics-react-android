@@ -33,7 +33,11 @@ const ComicPageNavigation = (props: ComicPageNavigationProps) => {
                 flex="1"
                 mx="4"
                 mt="2"
-                isDisabled={currentPage === currentTotalPageNo - 1}
+                isDisabled={
+                    currentPage === currentTotalPageNo - 1 ||
+                    currentTotalPageNo === 0 ||
+                    currentTotalPageNo === 1
+                }
                 _disabled={{ bg: 'gray.600' }}
                 onPress={() => {
                     if (currentPage !== currentTotalPageNo - 1) {

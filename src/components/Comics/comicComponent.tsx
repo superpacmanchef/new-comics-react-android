@@ -1,10 +1,10 @@
 /* eslint-disable no-param-reassign */
 import axios from 'axios'
-import { Box } from 'native-base'
+import { Box, Center, Text } from 'native-base'
 import React, { useCallback, useEffect, useState } from 'react'
 import ComicGrid from './comicGrid'
 import ComicPageNavigation from './comicPageNavigation'
-const link = 'http://1833-82-20-31-7.ngrok.io'
+const link = 'http://455c-82-20-31-7.ngrok.io'
 
 type ComicComponentProps = {
     chosenWeeksComicsFilter: Comic_ShortBoxed_SplitTitle_Image[] | null
@@ -13,7 +13,7 @@ type ComicComponentProps = {
 const ComicComponent = (props: ComicComponentProps) => {
     const { chosenWeeksComicsFilter } = props
 
-    const [currentPage, updateCurrentPage] = useState(1)
+    const [currentPage, updateCurrentPage] = useState(0)
     const [currentPageComics, updateCurrentPageComics] =
         useState<Comic_ShortBoxed_SplitTitle_Image[]>()
     const [currentTotalPageNo, updateCurrentTotalPageNo] = useState(1)
@@ -74,12 +74,21 @@ const ComicComponent = (props: ComicComponentProps) => {
             )
             pageChange(0)
         }
-    }, [chosenWeeksComicsFilter, pageChange])
+    }, [chosenWeeksComicsFilter])
 
     return (
         <Box flex={1} flexDirection="column-reverse">
             <Box bgColor="muted.800" flex={10}>
-                <ComicGrid comics={currentPageComics} loading={loading} />
+                {chosenWeeksComicsFilter &&
+                chosenWeeksComicsFilter.length !== 0 ? (
+                    <ComicGrid comics={currentPageComics} loading={loading} />
+                ) : (
+                    <Center>
+                        <Text color={'white'} fontSize="4xl">
+                            No Comics Found
+                        </Text>
+                    </Center>
+                )}
             </Box>
             <Box
                 position={'absolute'}
