@@ -1,5 +1,5 @@
 import useSWR from 'swr'
-const link = 'http://455c-82-20-31-7.ngrok.io'
+const link = 'http://beb2-82-20-31-7.ngrok.io'
 
 export const fetcher = (url: string) => fetch(url).then((r) => r.json())
 
@@ -33,8 +33,8 @@ export const usePull = () => {
     const pullList: string[] = data?.pullList ? data?.pullList : []
 
     return {
-        pullList: pullList,
-        pullListMutate: pullListMutate,
-        pullListLoading: pullListLoading,
+        pullList,
+        pullListMutate,
+        pullListLoading,
     }
 }

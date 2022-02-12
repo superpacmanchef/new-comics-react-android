@@ -15,7 +15,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import ComicComponent from '../components/Comics/comicComponent'
 import { HomeStackParamList } from '../components/Nav/Nav'
 import filterComicPublishers from '../utils/filterComicPublishers'
-const link = 'http://455c-82-20-31-7.ngrok.io'
+const link = 'http://beb2-82-20-31-7.ngrok.io'
 
 export type HomeScreenProps = NativeStackScreenProps<any, any>
 

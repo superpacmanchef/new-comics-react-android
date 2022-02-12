@@ -33,16 +33,17 @@ const ComicTile = (props: ComicTileProps) => {
                 borderRadius={5}
                 style={styles.outerView}
             >
-                {pullList && pullList.includes(comic.title.toUpperCase()) && (
-                    <Box style={{ zIndex: 35 }}>
-                        <MaterialCommunityIcons
-                            style={{ position: 'absolute' }}
-                            name={'star'}
-                            size={30}
-                            color={'black'}
-                        />
-                    </Box>
-                )}
+                {pullList.length > 0 &&
+                    pullList.includes(comic.title.toUpperCase()) && (
+                        <Box style={{ zIndex: 35 }}>
+                            <MaterialCommunityIcons
+                                style={{ position: 'absolute' }}
+                                name={'star'}
+                                size={30}
+                                color={'black'}
+                            />
+                        </Box>
+                    )}
                 <Center>
                     <Image
                         source={{ uri: comic.image }}

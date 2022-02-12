@@ -62,6 +62,8 @@ const FocusComic = (props: FocusComicScreen) => {
         )
     }, [collection])
 
+    console.log(pullList, 'bums')
+
     return (
         <ScrollView>
             <Box bg="muted.800" flex="1" px="2">
@@ -85,8 +87,7 @@ const FocusComic = (props: FocusComicScreen) => {
 
                     <Box flexDir={'row'}>
                         {user &&
-                            (pullList &&
-                            !pullList.includes(comic.title.toUpperCase()) ? (
+                            (!pullList.includes(comic.title.toUpperCase()) ? (
                                 <Button
                                     flex="1"
                                     mx="4"

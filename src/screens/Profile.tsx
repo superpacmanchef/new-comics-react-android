@@ -1,9 +1,11 @@
-import { Box, FlatList, Text, Button } from 'native-base'
+import { Box, FlatList, Text, Button, InputGroup } from 'native-base'
 import React, { useState } from 'react'
 import ComicComponent from '../components/Comics/comicComponent'
 import { useCollection, usePull, useUser } from '../lib/hooks'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import removeComicFromPullList from '../utils/removeComicFromPullList'
+import * as ImagePicker from 'expo-image-picker'
+const link = 'http://beb2-82-20-31-7.ngrok.io'
 
 const Profile = () => {
     const [user, { mutate }] = useUser()
@@ -17,6 +19,7 @@ const Profile = () => {
             <Text color="white" fontSize={'20'} mt="2" mx="auto">
                 {user.username}'s Profile
             </Text>
+
             <Box flexDirection="row" mx="auto">
                 <Button
                     flex="1"

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useCollection } from '../lib/hooks'
-const link = 'http://455c-82-20-31-7.ngrok.io'
+const link = 'http://beb2-82-20-31-7.ngrok.io'
 
 export default (
     comic: Comic_ShortBoxed_SplitTitle_Image,
