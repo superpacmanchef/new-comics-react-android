@@ -9,7 +9,7 @@ import {
 import React, { useState } from 'react'
 import { ScrollViewBase } from 'react-native'
 import { useCollection, usePull, useUser } from '../lib/hooks'
-const link = 'http://beb2-82-20-31-7.ngrok.io'
+const link = 'http://731d-82-20-31-7.ngrok.io'
 
 const Login = () => {
     const [inputEmail, updateInputEmail] = useState('')
@@ -18,8 +18,8 @@ const Login = () => {
     const [inputUsername, updateInputUsername] = useState('')
 
     const [user, { mutate }] = useUser()
-    const { collection, collectionMutate } = useCollection()
-    const { pullList, pullListMutate } = usePull()
+    const { collectionMutate } = useCollection()
+    const { pullListMutate } = usePull()
     const [toShow, updateToShow] = useState('Login')
 
     const logUser = async () => {
@@ -32,8 +32,11 @@ const Login = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body),
         })
+
         if (res.status === 200) {
             const userObj = await res.json()
+            console.log(userObj)
+
             mutate(userObj.username)
             collectionMutate(userObj.collection)
             pullListMutate(userObj.pullList)

@@ -1,11 +1,11 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import axios from 'axios'
 import {
     Box,
     Button,
     CheckIcon,
     FormControl,
-    Input,
+    Icon,
+    IconButton,
     Modal,
     Select,
     Text,
@@ -13,11 +13,9 @@ import {
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import ComicComponent from '../components/Comics/comicComponent'
-import { HomeStackParamList } from '../components/Nav/Nav'
+import MainButton from '../components/UI/MainButton'
 import filterComicPublishers from '../utils/filterComicPublishers'
-const link = 'http://beb2-82-20-31-7.ngrok.io'
-
-export type HomeScreenProps = NativeStackScreenProps<any, any>
+const link = 'http://731d-82-20-31-7.ngrok.io'
 
 const Home = (props: any) => {
     const [chosenWeeksComics, updateChosenWeeksComics] = useState<
@@ -74,10 +72,28 @@ const Home = (props: any) => {
         props.navigation.setOptions({
             headerRight: () => (
                 <Box mr="2">
-                    <MaterialCommunityIcons
-                        name="filter"
-                        color="white"
-                        size={30}
+                    <IconButton
+                        icon={
+                            <Icon
+                                as={
+                                    <MaterialCommunityIcons
+                                        name="filter"
+                                        color="white"
+                                    />
+                                }
+                                name="emoji-happy"
+                            />
+                        }
+                        _icon={{
+                            color: 'red.600',
+                            size: 'md',
+                        }}
+                        _hover={{
+                            bg: 'red.500:alpha.20',
+                        }}
+                        _pressed={{
+                            bg: 'red.500:alpha.20',
+                        }}
                         onPress={() => {
                             updateShowModal(true)
                         }}
@@ -95,8 +111,8 @@ const Home = (props: any) => {
                     updateShowModal(false)
                 }}
             >
-                <Modal.Content maxWidth="400px" height={'300px'} bg="muted.600">
-                    <Modal.CloseButton bg="white" />
+                <Modal.Content maxWidth="400px" height={'340px'} bg="muted.600">
+                    <Modal.CloseButton bg="red.600" />
 
                     <Modal.Header>
                         <Text color="white" fontSize={16}>
@@ -104,8 +120,10 @@ const Home = (props: any) => {
                         </Text>
                     </Modal.Header>
                     <Modal.Body>
-                        <FormControl>
-                            <Text color="white">Week</Text>
+                        <FormControl mb="4">
+                            <FormControl.Label color="white">
+                                <Text color="white">Week</Text>
+                            </FormControl.Label>
                             <Select
                                 bg="white"
                                 selectedValue={currentChosenWeek.toString()}
@@ -126,7 +144,7 @@ const Home = (props: any) => {
                                 <Select.Item label="Next Week" value="2" />
                             </Select>
                         </FormControl>
-                        <FormControl mt="3">
+                        <FormControl>
                             <FormControl.Label>
                                 <Text color="white">Publisher</Text>
                             </FormControl.Label>
@@ -163,17 +181,15 @@ const Home = (props: any) => {
                         </FormControl>
                     </Modal.Body>
                     <Modal.Footer bg="muted.600">
-                        <Button
-                            mx="auto"
-                            w="24"
-                            bg="red.600"
+                        <MainButton
                             onPress={() => {
                                 getWeeksComics()
                                 updateShowModal(false)
                             }}
+                            mx="0"
                         >
                             Filter
-                        </Button>
+                        </MainButton>
                     </Modal.Footer>
                 </Modal.Content>
             </Modal>

@@ -1,11 +1,9 @@
 import { useNavigation } from '@react-navigation/native'
-import { Center, Image, Box, Text, Button } from 'native-base'
+import { Center, Image, Box, Text } from 'native-base'
 import React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import { useCollection, usePull, useUser } from '../../lib/hooks'
-import addComicToPullList from '../../utils/addComicToPullList'
-import removeComicFromPullList from '../../utils/removeComicFromPullList'
+import { usePull, useUser } from '../../lib/hooks'
 
 type ComicTileProps = {
     comic: Comic_ShortBoxed_SplitTitle_Image
@@ -34,7 +32,9 @@ const ComicTile = (props: ComicTileProps) => {
                 style={styles.outerView}
             >
                 {pullList.length > 0 &&
-                    pullList.includes(comic.title.toUpperCase()) && (
+                    pullList.includes(
+                        comic.title.toUpperCase().replace('THE ' || 'The ', '')
+                    ) && (
                         <Box style={{ zIndex: 35 }}>
                             <MaterialCommunityIcons
                                 style={{ position: 'absolute' }}

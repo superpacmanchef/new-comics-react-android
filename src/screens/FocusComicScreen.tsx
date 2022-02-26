@@ -6,11 +6,11 @@ import {
     Image,
     ScrollView,
     Divider,
-    InputGroup,
     Button,
 } from 'native-base'
 import React, { useEffect, useState } from 'react'
 import { HomeStackParamList } from '../components/Nav/Nav'
+import MainButton from '../components/UI/MainButton'
 import { useCollection, usePull, useUser } from '../lib/hooks'
 import addComicToCollection from '../utils/addComicToCollection'
 import addComicToPullList from '../utils/addComicToPullList'
@@ -62,8 +62,6 @@ const FocusComic = (props: FocusComicScreen) => {
         )
     }, [collection])
 
-    console.log(pullList, 'bums')
-
     return (
         <ScrollView>
             <Box bg="muted.800" flex="1" px="2">
@@ -87,23 +85,27 @@ const FocusComic = (props: FocusComicScreen) => {
 
                     <Box flexDir={'row'}>
                         {user &&
-                            (!pullList.includes(comic.title.toUpperCase()) ? (
-                                <Button
-                                    flex="1"
-                                    mx="4"
+                            (!pullList.includes(
+                                comic.title
+                                    .toUpperCase()
+                                    .replace('THE ' || 'The ', '')
+                            ) ? (
+                                <MainButton
                                     onPress={() => {
+                                        let title = comic.title.toUpperCase()
+                                        title = title.replace('THE ', '')
                                         addComicToPullList(
-                                            comic.title,
+                                            title,
                                             pullListMutate
                                         )
                                     }}
                                 >
-                                    Add to Pull List
-                                </Button>
+                                    <Text textAlign={'center'} color="white">
+                                        Add to Pull List
+                                    </Text>
+                                </MainButton>
                             ) : (
-                                <Button
-                                    flex="1"
-                                    mx="4"
+                                <MainButton
                                     onPress={() => {
                                         removeComicFromPullList(
                                             comic.title,
@@ -111,15 +113,15 @@ const FocusComic = (props: FocusComicScreen) => {
                                         )
                                     }}
                                 >
-                                    Remove From Pull List
-                                </Button>
+                                    <Text textAlign={'center'} color="white">
+                                        Remove From Pull List
+                                    </Text>
+                                </MainButton>
                             ))}
 
                         {user &&
                             (t ? (
-                                <Button
-                                    flex="1"
-                                    mx="4"
+                                <MainButton
                                     onPress={() => {
                                         addComicToCollection(
                                             comic,
@@ -127,12 +129,12 @@ const FocusComic = (props: FocusComicScreen) => {
                                         )
                                     }}
                                 >
-                                    Add to Collections
-                                </Button>
+                                    <Text textAlign={'center'} color="white">
+                                        Add to Collections
+                                    </Text>
+                                </MainButton>
                             ) : (
-                                <Button
-                                    flex="1"
-                                    mx="4"
+                                <MainButton
                                     onPress={() => {
                                         removeComicFromCollection(
                                             comic,
@@ -140,8 +142,10 @@ const FocusComic = (props: FocusComicScreen) => {
                                         )
                                     }}
                                 >
-                                    Remove From Collection
-                                </Button>
+                                    <Text textAlign={'center'} color="white">
+                                        Remove From Collection
+                                    </Text>
+                                </MainButton>
                             ))}
                     </Box>
 

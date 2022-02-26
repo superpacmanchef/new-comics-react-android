@@ -1,5 +1,5 @@
 import useSWR from 'swr'
-const link = 'http://beb2-82-20-31-7.ngrok.io'
+const link = 'http://731d-82-20-31-7.ngrok.io'
 
 export const fetcher = (url: string) => fetch(url).then((r) => r.json())
 
@@ -17,10 +17,9 @@ export const useCollection = () => {
     const collectionMutate = mutate
     // if data is not defined, the query has not completed
     const collectionLoading = !data
-    let collection: Comic_ShortBoxed_SplitTitle_Image[] = []
-    if (data?.collection) {
-        collection = data?.collection
-    }
+    const collection: Comic_ShortBoxed_SplitTitle_Image[] = data?.collection
+        ? data?.collection
+        : []
 
     return { collection, collectionMutate, collectionLoading }
 }

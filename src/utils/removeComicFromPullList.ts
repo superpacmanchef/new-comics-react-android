@@ -1,5 +1,5 @@
 import axios from 'axios'
-const link = 'http://beb2-82-20-31-7.ngrok.io'
+const link = 'http://731d-82-20-31-7.ngrok.io'
 
 export default (
     comicTitle: string,
@@ -8,7 +8,7 @@ export default (
     axios
         .delete(`${link}/pullHandler`, {
             data: {
-                comic: comicTitle,
+                comic: comicTitle.toUpperCase().replace('THE' || 'The', ''),
             },
         })
         .then((res) => {
