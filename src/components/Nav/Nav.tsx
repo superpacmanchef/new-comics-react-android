@@ -10,13 +10,8 @@ import { CardStyleInterpolators } from '@react-navigation/stack'
 import Profile from '../../screens/Profile'
 import { useUser } from '../../lib/hooks'
 import AddComicScreen from '../../screens/AddComicScreen'
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
-import {
-    PermissionsAndroid,
-    Pressable,
-    TouchableHighlight,
-    TouchableOpacity,
-} from 'react-native'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { Pressable } from 'react-native'
 
 export type HomeStackParamList = {
     Home: undefined
@@ -32,12 +27,10 @@ const HomeStack = createStackNavigator<HomeStackParamList>()
 const LoginStack = createStackNavigator()
 const ProfileStack = createStackNavigator<ProfileStackParamList>()
 
-type FocusComicScreen = StackScreenProps<HomeStackParamList, 'FocusComic'>
-
-const HomeStackScreen = (props: FocusComicScreen) => {
+const HomeStackScreen = () => {
     return (
         <HomeStack.Navigator
-            screenOptions={({ route }) => ({
+            screenOptions={() => ({
                 headerStyle: {
                     backgroundColor: '#404040',
                 },
@@ -61,7 +54,7 @@ const HomeStackScreen = (props: FocusComicScreen) => {
 const LoginStackScreen = () => {
     return (
         <LoginStack.Navigator
-            screenOptions={({ route }) => ({
+            screenOptions={() => ({
                 headerStyle: {
                     backgroundColor: '#404040',
                 },
@@ -76,7 +69,7 @@ const LoginStackScreen = () => {
 const ProfileStackScreen = () => {
     return (
         <ProfileStack.Navigator
-            screenOptions={({ route }) => ({
+            screenOptions={() => ({
                 headerStyle: {
                     backgroundColor: '#404040',
                 },
@@ -108,7 +101,7 @@ const ProfileStackScreen = () => {
 const Tab = createBottomTabNavigator()
 
 export default () => {
-    const [user, { mutate }] = useUser()
+    const [user] = useUser()
 
     return (
         <SafeAreaProvider>

@@ -1,15 +1,8 @@
-import {
-    Box,
-    Button,
-    Input,
-    KeyboardAvoidingView,
-    ScrollView,
-    Text,
-} from 'native-base'
+import { Box, Button, Input, ScrollView, Text } from 'native-base'
 import React, { useState } from 'react'
-import { ScrollViewBase } from 'react-native'
+import MainButton from '../components/UI/MainButton'
 import { useCollection, usePull, useUser } from '../lib/hooks'
-const link = 'http://731d-82-20-31-7.ngrok.io'
+const link = 'http://753e-82-20-31-7.ngrok.io'
 
 const Login = () => {
     const [inputEmail, updateInputEmail] = useState('')
@@ -23,6 +16,13 @@ const Login = () => {
     const [toShow, updateToShow] = useState('Login')
 
     const logUser = async () => {
+        const mailformat =
+            /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+        if (!inputEmail.match(mailformat)) {
+            alert('Valid email address!')
+            return
+        }
+
         const body = {
             username: inputEmail,
             password: inputPassword,
@@ -35,8 +35,6 @@ const Login = () => {
 
         if (res.status === 200) {
             const userObj = await res.json()
-            console.log(userObj)
-
             mutate(userObj.username)
             collectionMutate(userObj.collection)
             pullListMutate(userObj.pullList)
@@ -46,6 +44,13 @@ const Login = () => {
     }
 
     const regUser = async () => {
+        const mailformat =
+            /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+        if (!inputEmail.match(mailformat)) {
+            alert('Valid email address!')
+            return
+        }
+
         if (inputPassword !== inputPasswordRepeat) {
             alert('Passwords do not match.')
             return
@@ -139,15 +144,15 @@ const Login = () => {
                                 shadow="4"
                                 maxWidth="300px"
                             />
-                            <Button
-                                bg="red.600"
-                                mt="8"
-                                onPress={() => {
-                                    logUser()
-                                }}
-                            >
-                                Login
-                            </Button>
+                            <Box mt={5}>
+                                <MainButton
+                                    onPress={() => {
+                                        logUser()
+                                    }}
+                                >
+                                    Login
+                                </MainButton>
+                            </Box>
                         </>
                     ) : (
                         <>
@@ -206,15 +211,15 @@ const Login = () => {
                                 shadow="4"
                                 maxWidth="300px"
                             />
-                            <Button
-                                bg="red.600"
-                                mt="8"
-                                onPress={() => {
-                                    regUser()
-                                }}
-                            >
-                                Register
-                            </Button>
+                            <Box mt={5}>
+                                <MainButton
+                                    onPress={() => {
+                                        regUser()
+                                    }}
+                                >
+                                    Register
+                                </MainButton>
+                            </Box>
                         </>
                     )}
                 </Box>

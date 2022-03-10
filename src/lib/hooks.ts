@@ -1,5 +1,5 @@
 import useSWR from 'swr'
-const link = 'http://731d-82-20-31-7.ngrok.io'
+const link = 'http://753e-82-20-31-7.ngrok.io'
 
 export const fetcher = (url: string) => fetch(url).then((r) => r.json())
 

@@ -21,9 +21,13 @@ const LoadingComicTile = () => {
                         m="3"
                         rounded="md"
                         startColor="muted.300"
-                        endColor="muted.600"
                     />
-                    <Skeleton.Text px="5" my="2" lines={1} />
+                    <Skeleton.Text
+                        px="5"
+                        my="2"
+                        lines={1}
+                        startColor="muted.300"
+                    />
                 </Center>
             </Box>
         </Box>

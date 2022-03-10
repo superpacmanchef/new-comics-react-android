@@ -1,7 +1,6 @@
 import axios from 'axios'
 import {
     Box,
-    Button,
     CheckIcon,
     FormControl,
     Icon,
@@ -15,7 +14,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import ComicComponent from '../components/Comics/comicComponent'
 import MainButton from '../components/UI/MainButton'
 import filterComicPublishers from '../utils/filterComicPublishers'
-const link = 'http://731d-82-20-31-7.ngrok.io'
+const link = 'http://753e-82-20-31-7.ngrok.io'
 
 const Home = (props: any) => {
     const [chosenWeeksComics, updateChosenWeeksComics] = useState<
@@ -30,6 +29,7 @@ const Home = (props: any) => {
     const [showModal, updateShowModal] = useState(false)
 
     const getWeeksComics = async () => {
+        //If filter within same week no need to re-get weeks comics
         if (currentChosenWeek !== lastChosenWeek) {
             updateLastChosenWeek(currentChosenWeek)
 
@@ -68,6 +68,7 @@ const Home = (props: any) => {
         getWeeksComics()
     }, [])
 
+    //Adds filter logo to header
     useLayoutEffect(() => {
         props.navigation.setOptions({
             headerRight: () => (
@@ -81,7 +82,7 @@ const Home = (props: any) => {
                                         color="white"
                                     />
                                 }
-                                name="emoji-happy"
+                                name="filter"
                             />
                         }
                         _icon={{

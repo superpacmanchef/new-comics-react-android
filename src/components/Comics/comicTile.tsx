@@ -3,7 +3,7 @@ import { Center, Image, Box, Text } from 'native-base'
 import React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import { usePull, useUser } from '../../lib/hooks'
+import { usePull } from '../../lib/hooks'
 
 type ComicTileProps = {
     comic: Comic_ShortBoxed_SplitTitle_Image
@@ -14,8 +14,7 @@ const ComicTile = (props: ComicTileProps) => {
     const { comic } = props
     const navigation = useNavigation<any>()
 
-    const [user] = useUser()
-    const { pullList, pullListMutate } = usePull()
+    const { pullList } = usePull()
 
     return (
         <TouchableOpacity
@@ -54,7 +53,7 @@ const ComicTile = (props: ComicTileProps) => {
                         m="3"
                     />
 
-                    <Text textAlign={'center'} color="white">
+                    <Text textAlign={'center'} color="white" pb={3}>
                         {comic.title} #{comic.issue_no}
                     </Text>
                 </Center>

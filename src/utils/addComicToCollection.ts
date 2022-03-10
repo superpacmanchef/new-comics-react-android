@@ -1,5 +1,6 @@
 import axios from 'axios'
-const link = 'http://731d-82-20-31-7.ngrok.io'
+const link = 'http://753e-82-20-31-7.ngrok.io'
+import { Alert } from 'react-native'
 
 export default (
     comic: Comic_ShortBoxed_SplitTitle_Image,
@@ -18,5 +19,5 @@ export default (
                 collectionMutate(res.data)
             }
         })
-        .catch((err) => console.error(err))
+        .catch((err) => Alert.alert('Something went wrong. Please try again.'))
 }

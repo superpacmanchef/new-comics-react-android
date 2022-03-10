@@ -1,13 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import {
-    Box,
-    Center,
-    Text,
-    Image,
-    ScrollView,
-    Divider,
-    Button,
-} from 'native-base'
+import { Box, Center, Text, Image, ScrollView, Divider } from 'native-base'
 import React, { useEffect, useState } from 'react'
 import { HomeStackParamList } from '../components/Nav/Nav'
 import MainButton from '../components/UI/MainButton'
@@ -43,14 +35,14 @@ const FocusComic = (props: FocusComicScreen) => {
     const [user] = useUser()
     const { pullList, pullListMutate } = usePull()
     const { collection, collectionMutate } = useCollection()
-    const [t, updateT] = useState(true)
+    const [inCollection, updateInCollection] = useState(true)
 
     useEffect(() => {
         props.navigation.setOptions({ headerTitle: comic.title })
     }, [])
 
     useEffect(() => {
-        updateT(
+        updateInCollection(
             !collection
                 .map((collectionComic: Comic_ShortBoxed_SplitTitle_Image) => {
                     if (collectionComic.diamond_id === comic.diamond_id) {
@@ -83,6 +75,7 @@ const FocusComic = (props: FocusComicScreen) => {
                         m="3"
                     />
 
+                    {/* Logged in user only - Add/Remove from Colleciton/Pull list */}
                     <Box flexDir={'row'}>
                         {user &&
                             (!pullList.includes(
@@ -120,7 +113,7 @@ const FocusComic = (props: FocusComicScreen) => {
                             ))}
 
                         {user &&
-                            (t ? (
+                            (inCollection ? (
                                 <MainButton
                                     onPress={() => {
                                         addComicToCollection(

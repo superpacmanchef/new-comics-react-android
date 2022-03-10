@@ -4,7 +4,7 @@ import { Box, Center, Text } from 'native-base'
 import React, { useCallback, useEffect, useState } from 'react'
 import ComicGrid from './comicGrid'
 import ComicPageNavigation from './comicPageNavigation'
-const link = 'http://731d-82-20-31-7.ngrok.io'
+const link = 'http://753e-82-20-31-7.ngrok.io'
 
 type ComicComponentProps = {
     chosenWeeksComicsFilter: Comic_ShortBoxed_SplitTitle_Image[] | null
@@ -52,14 +52,10 @@ const ComicComponent = (props: ComicComponentProps) => {
                     })
                     if (imageComics.length > 0) {
                         updateCurrentPageComics(imageComics)
-                        setTimeout(() => {
-                            updateLoading(false)
-                        }, 300)
+                        updateLoading(false)
                     } else {
                         updateCurrentPageComics([])
-                        setTimeout(() => {
-                            updateLoading(false)
-                        }, 300)
+                        updateLoading(false)
                     }
                 })
             }

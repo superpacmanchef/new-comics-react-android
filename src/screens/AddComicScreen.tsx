@@ -1,7 +1,5 @@
 import {
     Box,
-    Button,
-    TextArea,
     Input,
     Text,
     FormControl,
@@ -12,21 +10,19 @@ import {
     VStack,
     IconButton,
     Icon,
-    Center,
     Modal,
 } from 'native-base'
 import React, { useEffect, useLayoutEffect, useState } from 'react'
-import { Platform, SafeAreaView, Alert, StyleSheet } from 'react-native'
+import { Platform, Alert } from 'react-native'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import axios from 'axios'
-import { useCollection, useUser } from '../lib/hooks'
+import { useCollection } from '../lib/hooks'
 import addComicToCollection from '../utils/addComicToCollection'
 import { BarCodeScanner } from 'expo-barcode-scanner'
-import Dialog from 'react-native-dialog'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import MainButton from '../components/UI/MainButton'
 
-const link = 'http://731d-82-20-31-7.ngrok.io'
+const link = 'http://753e-82-20-31-7.ngrok.io'
 
 const AddComicScreen = (props: any) => {
     const [addComicTitle, updateAddComicTitle] = useState<string | undefined>()
@@ -34,12 +30,8 @@ const AddComicScreen = (props: any) => {
         string | undefined
     >()
 
-    const [addComicDate, updateAddComicDate] = useState<Date | undefined>(
-        undefined
-    )
-
+    const [addComicDate, updateAddComicDate] = useState<Date | undefined>()
     const [addComicID, updateAddComicID] = useState('')
-
     const [addComicUPC, updateAddComicUPC] = useState('')
 
     const [date, setDate] = useState(new Date())
@@ -48,21 +40,20 @@ const AddComicScreen = (props: any) => {
 
     const [hasPermission, setHasPermission] = useState<boolean | null>(null)
     const [scanned, setScanned] = useState(false)
+    const [addLoading, updateAddLoading] = useState(false)
 
     const [modalShow, updateModalShow] = useState(false)
 
     const [cameraShow, updateCameraShow] = useState(false)
 
-    const { collection, collectionMutate } = useCollection()
+    const { collectionMutate } = useCollection()
 
     useEffect(() => {
-        ;(async () => {
-            const { status } = await BarCodeScanner.requestPermissionsAsync()
-            setHasPermission(status === 'granted')
-        })()
+        askPhotoPermission()
     }, [])
 
-    useEffect(() => {
+    //Adds Plus icon to header
+    useLayoutEffect(() => {
         props.navigation.setOptions({
             headerRight: () => (
                 <Box mr="2">
@@ -83,8 +74,20 @@ const AddComicScreen = (props: any) => {
                         _pressed={{
                             bg: 'red.500:alpha.20',
                         }}
-                        onPress={() => {
-                            updateCameraShow(!cameraShow)
+                        onPress={async () => {
+                            if (
+                                (!cameraShow && !hasPermission) ||
+                                hasPermission === null
+                            ) {
+                                const granted = await askPhotoPermission()
+                                if (granted) {
+                                    updateCameraShow(true)
+                                } else {
+                                    updateCameraShow(false)
+                                }
+                            } else {
+                                updateCameraShow(false)
+                            }
                         }}
                     />
                 </Box>
@@ -108,13 +111,18 @@ const AddComicScreen = (props: any) => {
     }
 
     const searchComic = async () => {
+        updateAddLoading(true)
         if (addComicTitle === '' || addComicTitle === undefined) {
             updateAddComicTitle('')
+            updateAddLoading(false)
+
             return
         }
 
         if (addComicIssueNumber === '' || addComicIssueNumber === undefined) {
             updateAddComicIssueNumber('')
+            updateAddLoading(false)
+
             return
         }
 
@@ -130,7 +138,7 @@ const AddComicScreen = (props: any) => {
             (addComicUPC !== '' && addComicUPC.length < 17) ||
             addComicUPC.length > 17
         ) {
-            Alert.alert('UPC code length is not exactly 16')
+            Alert.alert('UPC code length is not exactly 16.')
             return
         }
 
@@ -138,7 +146,7 @@ const AddComicScreen = (props: any) => {
             (addComicTitle === '' && addComicTitle !== undefined) ||
             (addComicIssueNumber === '' && addComicIssueNumber !== undefined)
         ) {
-            Alert.alert('Missed Comic Title or Issue Number')
+            Alert.alert('Missed Comic Title or Issue Number.')
             return
         }
 
@@ -162,20 +170,25 @@ const AddComicScreen = (props: any) => {
         } catch (err) {
             console.log(err)
 
-            Alert.alert('Something went Wrong')
+            Alert.alert('Something went wrong. Please try again.')
+        } finally {
+            updateAddLoading(false)
         }
     }
 
     const searchComicPhoto = async (upc: string, issueNumber: string) => {
+        updateAddLoading(true)
         if ((upc !== '' && upc.length < 17) || upc.length > 17) {
             Alert.alert('UPC code length is not exactly 16')
+            updateAddLoading(false)
+
             return
         }
 
         try {
             const data = await axios.post(`${link}/comicSearchHandler`, {
                 comicTitle: '',
-                comicIssueNumber: issueNumber,
+                comicIssueNumber: '',
                 comicMonth: '',
                 comicYear: '',
                 comicID: '',
@@ -188,7 +201,9 @@ const AddComicScreen = (props: any) => {
             updateAddComicIssueNumber('')
             props.navigation.pop()
         } catch (err) {
-            Alert.alert('Something went Wrong')
+            Alert.alert('Something went wrong. Please try again.')
+        } finally {
+            updateAddLoading(false)
         }
     }
 
@@ -198,10 +213,16 @@ const AddComicScreen = (props: any) => {
     }: {
         type: any
         data: any
-    }) => {
+    }): Promise<void> => {
         updateAddComicUPC(data)
 
         updateModalShow(true)
+    }
+
+    const askPhotoPermission = async () => {
+        const { status } = await BarCodeScanner.requestPermissionsAsync()
+        setHasPermission(status === 'granted')
+        return status === 'granted'
     }
 
     return (
@@ -232,7 +253,7 @@ const AddComicScreen = (props: any) => {
                             <Modal.Body flex={1}>
                                 <FormControl
                                     isInvalid={addComicIssueNumber === ''}
-                                    mt="65px"
+                                    mt="10"
                                 >
                                     <Stack>
                                         <Input
@@ -257,7 +278,9 @@ const AddComicScreen = (props: any) => {
                             </Modal.Body>
                             <Modal.Footer bg="muted.600">
                                 <MainButton
+                                    isLoading={addLoading}
                                     onPress={() => {
+                                        updateAddLoading(true)
                                         if (addComicIssueNumber) {
                                             const t =
                                                 3 - addComicIssueNumber?.length
@@ -443,18 +466,15 @@ const AddComicScreen = (props: any) => {
                         )}
                         <Box mt="4">
                             <MainButton
+                                isLoading={addLoading}
                                 onPress={() => {
+                                    updateAddLoading(true)
                                     searchComic()
                                 }}
                                 mx="0"
+                                fontSize="xl"
                             >
-                                <Text
-                                    textAlign={'center'}
-                                    color="white"
-                                    fontSize={'xl'}
-                                >
-                                    Add to Pull List
-                                </Text>
+                                Add to Pull List
                             </MainButton>
                         </Box>
                     </VStack>
@@ -465,7 +485,3 @@ const AddComicScreen = (props: any) => {
 }
 
 export default AddComicScreen
-
-function alert(arg0: string) {
-    throw new Error('Function not implemented.')
-}
