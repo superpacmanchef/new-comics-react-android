@@ -432,7 +432,7 @@ const AddComicScreen = (props: any) => {
                         >
                             <Stack mt="4">
                                 <FormControl.Label color="white">
-                                    <Text color="white">Comic Diamond ID</Text>
+                                    <Text color="white">Comic UPC</Text>
                                 </FormControl.Label>
                                 <Input
                                     size={'2xl'}
