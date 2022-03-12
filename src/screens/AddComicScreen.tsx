@@ -22,7 +22,7 @@ import { BarCodeScanner } from 'expo-barcode-scanner'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import MainButton from '../components/UI/MainButton'
 
-const link = 'http://753e-82-20-31-7.ngrok.io'
+const link = 'http://c742-82-20-31-7.ngrok.io'
 
 const AddComicScreen = (props: any) => {
     const [addComicTitle, updateAddComicTitle] = useState<string | undefined>()
@@ -126,6 +126,19 @@ const AddComicScreen = (props: any) => {
             return
         }
 
+        let upcCopy = addComicUPC.slice(0, addComicUPC.length - 5)
+
+        const t = 3 - addComicIssueNumber?.length
+        let y = `11`
+
+        if (t == 2) {
+            y = '00' + addComicIssueNumber + y
+        } else {
+            y = '0' + addComicIssueNumber + y
+        }
+
+        upcCopy = upcCopy + y
+
         let coverMonth = ''
         let coverYear = ''
 
@@ -138,7 +151,7 @@ const AddComicScreen = (props: any) => {
             (addComicUPC !== '' && addComicUPC.length < 17) ||
             addComicUPC.length > 17
         ) {
-            Alert.alert('UPC code length is not exactly 16.')
+            Alert.alert('UPC code length is not exactly 17.')
             return
         }
 
@@ -157,7 +170,7 @@ const AddComicScreen = (props: any) => {
                 comicMonth: coverMonth,
                 comicYear: coverYear,
                 comicID: addComicID,
-                comicUPC: addComicUPC,
+                comicUPC: upcCopy,
             })
 
             await addComicToCollection(data.data, collectionMutate)
@@ -179,7 +192,7 @@ const AddComicScreen = (props: any) => {
     const searchComicPhoto = async (upc: string, issueNumber: string) => {
         updateAddLoading(true)
         if ((upc !== '' && upc.length < 17) || upc.length > 17) {
-            Alert.alert('UPC code length is not exactly 16')
+            Alert.alert('UPC code length is not exactly 17')
             updateAddLoading(false)
 
             return
@@ -411,7 +424,7 @@ const AddComicScreen = (props: any) => {
                         <FormControl>
                             <Stack mt="4">
                                 <FormControl.Label color="white">
-                                    <Text color="white">Comic Diamond ID</Text>
+                                    <Text color="white">Comic UPC</Text>
                                 </FormControl.Label>
                                 <Input
                                     size={'2xl'}
@@ -446,7 +459,7 @@ const AddComicScreen = (props: any) => {
                                     leftIcon={<WarningOutlineIcon size="xs" />}
                                 >
                                     <Text color="white">
-                                        UPC is less than 16
+                                        UPC is less than 17
                                     </Text>
                                 </FormControl.ErrorMessage>
                             </Stack>

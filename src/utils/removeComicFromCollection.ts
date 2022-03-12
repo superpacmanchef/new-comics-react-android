@@ -1,5 +1,5 @@
 import axios from 'axios'
-const link = 'http://753e-82-20-31-7.ngrok.io'
+const link = 'http://c742-82-20-31-7.ngrok.io'
 
 export default (
     comic: Comic_ShortBoxed_SplitTitle_Image,
