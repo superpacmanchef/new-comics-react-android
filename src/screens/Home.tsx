@@ -112,8 +112,8 @@ const Home = (props: any) => {
                     updateShowModal(false)
                 }}
             >
-                <Modal.Content maxWidth="400px" height={'340px'} bg="muted.600">
-                    <Modal.CloseButton bg="red.600" />
+                <Modal.Content maxWidth="400px" height={'340px'} bg="muted.500">
+                    <Modal.CloseButton bg="white" />
 
                     <Modal.Header>
                         <Text color="white" fontSize={16}>
@@ -125,8 +125,9 @@ const Home = (props: any) => {
                             <FormControl.Label color="white">
                                 <Text color="white">Week</Text>
                             </FormControl.Label>
-                            <Select
-                                bg="white"
+                            <Select 
+																_actionSheetContent={{bgColor : "muted.500"}}
+                                bgColor="white" 
                                 selectedValue={currentChosenWeek.toString()}
                                 minWidth="200"
                                 accessibilityLabel="Choose Week"
@@ -140,9 +141,9 @@ const Home = (props: any) => {
                                     updateCurrentChosenWeek(parseInt(itemValue))
                                 }
                             >
-                                <Select.Item label="Last Week" value="0" />
-                                <Select.Item label="Current Week" value="1" />
-                                <Select.Item label="Next Week" value="2" />
+                                <Select.Item label="Last Week" value="0" _text={{ color :"white"}} />
+                                <Select.Item label="Current Week" value="1"color="white" _text={{ color :"white"}}  />
+                                <Select.Item label="Next Week" value="2"color="white" _text={{ color :"white"}}  />
                             </Select>
                         </FormControl>
                         <FormControl>
@@ -150,7 +151,8 @@ const Home = (props: any) => {
                                 <Text color="white">Publisher</Text>
                             </FormControl.Label>
                             <Select
-                                bg="white"
+																_actionSheetContent={{bgColor : "muted.500"}}
+                                bgColor="white" 
                                 selectedValue={currentPublisher}
                                 minWidth="200"
                                 accessibilityLabel="Choose Publisher"
@@ -164,24 +166,24 @@ const Home = (props: any) => {
                                     updateCurrentPublisher(itemValue)
                                 }
                             >
-                                <Select.Item label="All" value="ALL" />
+                                <Select.Item label="All" value="ALL" _text={{ color :"white"}} />
                                 <Select.Item
                                     label="Marvel"
-                                    value="MARVEL COMICS"
+                                    value="MARVEL COMICS" _text={{ color :"white"}} 
                                 />
                                 <Select.Item
-                                    label="Image"
-                                    value="IMAGE COMICS"
+                                    label="Image" 
+                                    value="IMAGE COMICS" _text={{ color :"white"}}
                                 />
                                 <Select.Item
                                     label="Dark Horse"
-                                    value="DARK HORSE COMICS"
+                                    value="DARK HORSE COMICS" _text={{ color :"white"}}
                                 />
-                                <Select.Item label="IDW" value="IDW COMICS" />
+                                <Select.Item label="IDW" value="IDW COMICS" _text={{ color :"white"}}/>
                             </Select>
                         </FormControl>
                     </Modal.Body>
-                    <Modal.Footer bg="muted.600">
+                    <Modal.Footer bg="muted.500">
                         <MainButton
                             onPress={() => {
                                 getWeeksComics()
