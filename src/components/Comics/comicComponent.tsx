@@ -4,7 +4,7 @@ import { Box, Center, Text } from 'native-base'
 import React, { useCallback, useEffect, useState } from 'react'
 import ComicGrid from './comicGrid'
 import ComicPageNavigation from './comicPageNavigation'
-const link = 'http://c742-82-20-31-7.ngrok.io'
+const link = 'http://321d-82-20-31-7.ngrok.io'
 
 type ComicComponentProps = {
     chosenWeeksComicsFilter: Comic_ShortBoxed_SplitTitle_Image[] | null

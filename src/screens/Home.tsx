@@ -14,7 +14,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import ComicComponent from '../components/Comics/comicComponent'
 import MainButton from '../components/UI/MainButton'
 import filterComicPublishers from '../utils/filterComicPublishers'
-const link = 'http://c742-82-20-31-7.ngrok.io'
+const link = 'http://321d-82-20-31-7.ngrok.io'
 
 const Home = (props: any) => {
     const [chosenWeeksComics, updateChosenWeeksComics] = useState<

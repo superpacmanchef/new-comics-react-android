@@ -22,7 +22,7 @@ import { BarCodeScanner } from 'expo-barcode-scanner'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import MainButton from '../components/UI/MainButton'
 
-const link = 'http://c742-82-20-31-7.ngrok.io'
+const link = 'http://321d-82-20-31-7.ngrok.io'
 
 const AddComicScreen = (props: any) => {
     const [addComicTitle, updateAddComicTitle] = useState<string | undefined>()
@@ -38,7 +38,7 @@ const AddComicScreen = (props: any) => {
     const [mode, setMode] = useState()
     const [show, setShow] = useState(false)
 
-    const [hasPermission, setHasPermission] = useState<boolean | null>(null)
+    const [hasPermission, updateHasPermission] = useState<boolean | null>(null)
     const [scanned, setScanned] = useState(false)
     const [addLoading, updateAddLoading] = useState(false)
 
@@ -75,19 +75,7 @@ const AddComicScreen = (props: any) => {
                             bg: 'red.500:alpha.20',
                         }}
                         onPress={async () => {
-                            if (
-                                (!cameraShow && !hasPermission) ||
-                                hasPermission === null
-                            ) {
-                                const granted = await askPhotoPermission()
-                                if (granted) {
-                                    updateCameraShow(true)
-                                } else {
-                                    updateCameraShow(false)
-                                }
-                            } else {
-                                updateCameraShow(false)
-                            }
+                          updateCameraShow(!cameraShow)
                         }}
                     />
                 </Box>
@@ -102,7 +90,7 @@ const AddComicScreen = (props: any) => {
     }
 
     const showMode = (currentMode: any) => {
-        setShow(true)
+        setShow(currentMode)
         setMode(currentMode)
     }
 
@@ -127,7 +115,7 @@ const AddComicScreen = (props: any) => {
         }
 
         let upcCopy = addComicUPC.slice(0, addComicUPC.length - 5)
-
+				if(addComicUPC){
         const t = 3 - addComicIssueNumber?.length
         let y = `11`
 
@@ -138,6 +126,7 @@ const AddComicScreen = (props: any) => {
         }
 
         upcCopy = upcCopy + y
+				}
 
         let coverMonth = ''
         let coverYear = ''
@@ -234,7 +223,7 @@ const AddComicScreen = (props: any) => {
 
     const askPhotoPermission = async () => {
         const { status } = await BarCodeScanner.requestPermissionsAsync()
-        setHasPermission(status === 'granted')
+        updateHasPermission(status === 'granted')
         return status === 'granted'
     }
 
