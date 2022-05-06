@@ -14,7 +14,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import ComicComponent from '../components/Comics/comicComponent'
 import MainButton from '../components/UI/MainButton'
 import filterComicPublishers from '../utils/filterComicPublishers'
-const link = 'http://321d-82-20-31-7.ngrok.io'
+const link = 'https://comic-react-server.herokuapp.com'
 
 const Home = (props: any) => {
     const [chosenWeeksComics, updateChosenWeeksComics] = useState<
@@ -125,9 +125,9 @@ const Home = (props: any) => {
                             <FormControl.Label color="white">
                                 <Text color="white">Week</Text>
                             </FormControl.Label>
-                            <Select 
-																_actionSheetContent={{bgColor : "muted.500"}}
-                                bgColor="white" 
+                            <Select
+                                _actionSheetContent={{ bgColor: 'muted.500' }}
+                                bgColor="white"
                                 selectedValue={currentChosenWeek.toString()}
                                 minWidth="200"
                                 accessibilityLabel="Choose Week"
@@ -141,9 +141,23 @@ const Home = (props: any) => {
                                     updateCurrentChosenWeek(parseInt(itemValue))
                                 }
                             >
-                                <Select.Item label="Last Week" value="0" _text={{ color :"white"}} />
-                                <Select.Item label="Current Week" value="1"color="white" _text={{ color :"white"}}  />
-                                <Select.Item label="Next Week" value="2"color="white" _text={{ color :"white"}}  />
+                                <Select.Item
+                                    label="Last Week"
+                                    value="0"
+                                    _text={{ color: 'white' }}
+                                />
+                                <Select.Item
+                                    label="Current Week"
+                                    value="1"
+                                    color="white"
+                                    _text={{ color: 'white' }}
+                                />
+                                <Select.Item
+                                    label="Next Week"
+                                    value="2"
+                                    color="white"
+                                    _text={{ color: 'white' }}
+                                />
                             </Select>
                         </FormControl>
                         <FormControl>
@@ -151,8 +165,8 @@ const Home = (props: any) => {
                                 <Text color="white">Publisher</Text>
                             </FormControl.Label>
                             <Select
-																_actionSheetContent={{bgColor : "muted.500"}}
-                                bgColor="white" 
+                                _actionSheetContent={{ bgColor: 'muted.500' }}
+                                bgColor="white"
                                 selectedValue={currentPublisher}
                                 minWidth="200"
                                 accessibilityLabel="Choose Publisher"
@@ -166,20 +180,31 @@ const Home = (props: any) => {
                                     updateCurrentPublisher(itemValue)
                                 }
                             >
-                                <Select.Item label="All" value="ALL" _text={{ color :"white"}} />
                                 <Select.Item
-                                    label="Marvel"
-                                    value="MARVEL COMICS" _text={{ color :"white"}} 
+                                    label="All"
+                                    value="ALL"
+                                    _text={{ color: 'white' }}
                                 />
                                 <Select.Item
-                                    label="Image" 
-                                    value="IMAGE COMICS" _text={{ color :"white"}}
+                                    label="Marvel"
+                                    value="MARVEL COMICS"
+                                    _text={{ color: 'white' }}
+                                />
+                                <Select.Item
+                                    label="Image"
+                                    value="IMAGE COMICS"
+                                    _text={{ color: 'white' }}
                                 />
                                 <Select.Item
                                     label="Dark Horse"
-                                    value="DARK HORSE COMICS" _text={{ color :"white"}}
+                                    value="DARK HORSE COMICS"
+                                    _text={{ color: 'white' }}
                                 />
-                                <Select.Item label="IDW" value="IDW COMICS" _text={{ color :"white"}}/>
+                                <Select.Item
+                                    label="IDW"
+                                    value="IDW COMICS"
+                                    _text={{ color: 'white' }}
+                                />
                             </Select>
                         </FormControl>
                     </Modal.Body>

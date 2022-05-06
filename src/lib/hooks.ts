@@ -1,5 +1,5 @@
 import useSWR from 'swr'
-const link = 'http://321d-82-20-31-7.ngrok.io'
+const link = 'https://comic-react-server.herokuapp.com'
 
 export const fetcher = (url: string) => fetch(url).then((r) => r.json())
 

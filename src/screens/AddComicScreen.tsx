@@ -22,7 +22,7 @@ import { BarCodeScanner } from 'expo-barcode-scanner'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import MainButton from '../components/UI/MainButton'
 
-const link = 'http://321d-82-20-31-7.ngrok.io'
+const link = 'https://comic-react-server.herokuapp.com'
 
 const AddComicScreen = (props: any) => {
     const [addComicTitle, updateAddComicTitle] = useState<string | undefined>()
@@ -75,7 +75,7 @@ const AddComicScreen = (props: any) => {
                             bg: 'red.500:alpha.20',
                         }}
                         onPress={async () => {
-                          updateCameraShow(!cameraShow)
+                            updateCameraShow(!cameraShow)
                         }}
                     />
                 </Box>
@@ -115,18 +115,18 @@ const AddComicScreen = (props: any) => {
         }
 
         let upcCopy = addComicUPC.slice(0, addComicUPC.length - 5)
-				if(addComicUPC){
-        const t = 3 - addComicIssueNumber?.length
-        let y = `11`
+        if (addComicUPC) {
+            const t = 3 - addComicIssueNumber?.length
+            let y = `11`
 
-        if (t == 2) {
-            y = '00' + addComicIssueNumber + y
-        } else {
-            y = '0' + addComicIssueNumber + y
+            if (t == 2) {
+                y = '00' + addComicIssueNumber + y
+            } else {
+                y = '0' + addComicIssueNumber + y
+            }
+
+            upcCopy = upcCopy + y
         }
-
-        upcCopy = upcCopy + y
-				}
 
         let coverMonth = ''
         let coverYear = ''

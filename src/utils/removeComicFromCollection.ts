@@ -1,5 +1,5 @@
 import axios from 'axios'
-const link = 'http://321d-82-20-31-7.ngrok.io'
+const link = 'https://comic-react-server.herokuapp.com'
 
 export default (
     comic: Comic_ShortBoxed_SplitTitle_Image,

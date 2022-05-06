@@ -2,7 +2,7 @@ import { Box, Button, Input, ScrollView, Text } from 'native-base'
 import React, { useState } from 'react'
 import MainButton from '../components/UI/MainButton'
 import { useCollection, usePull, useUser } from '../lib/hooks'
-const link = 'http://321d-82-20-31-7.ngrok.io'
+const link = 'https://comic-react-server.herokuapp.com'
 
 const Login = () => {
     const [inputEmail, updateInputEmail] = useState('')
@@ -19,7 +19,7 @@ const Login = () => {
         const mailformat =
             /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
         if (!inputEmail.match(mailformat)) {
-            alert('Valid email address!')
+            alert('Please enter valid email address')
             return
         }
 
@@ -47,7 +47,7 @@ const Login = () => {
         const mailformat =
             /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
         if (!inputEmail.match(mailformat)) {
-            alert('Valid email address!')
+            alert('Please enter valid email address')
             return
         }
 
