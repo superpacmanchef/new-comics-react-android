@@ -66,7 +66,7 @@ const AddComicScreen = (props: any) => {
                         }
                         _icon={{
                             color: cameraShow ? 'white' : 'red.600',
-                            size: 'md',
+                            size: 'xl',
                         }}
                         _hover={{
                             bg: 'red.500:alpha.20',

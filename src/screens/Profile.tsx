@@ -25,7 +25,7 @@ const Profile = (props: any) => {
                         }
                         _icon={{
                             color: 'red.600',
-                            size: 'md',
+                            size: 'xl',
                         }}
                         _hover={{
                             bg: 'red.500:alpha.20',
@@ -53,7 +53,7 @@ const Profile = (props: any) => {
                     flex="1"
                     ml="2"
                     borderRadius={'0'}
-                    bg={toShow === 'Collection' ? 'red.600' : 'gray.100'}
+                    bg={toShow === 'Collection' ? 'red.600' : 'muted.600'}
                     _pressed={{
                         bg: toShow === 'Collection' ? 'red.800' : 'red.400',
                     }}
@@ -67,7 +67,7 @@ const Profile = (props: any) => {
                     flex="1"
                     mr="2"
                     borderRadius={'0'}
-                    bg={toShow === 'PullList' ? 'red.600' : 'gray.100'}
+                    bg={toShow === 'PullList' ? 'red.600' : 'muted.600'}
                     _pressed={{
                         bg: toShow === 'PullList' ? 'red.800' : 'red.400',
                     }}
@@ -78,6 +78,7 @@ const Profile = (props: any) => {
                     Pull List
                 </Button>
             </Box>
+
             {toShow === 'Collection' ? (
                 <Box mx="2" flex="1">
                     <ComicComponent chosenWeeksComicsFilter={collection} />
@@ -112,7 +113,7 @@ const Profile = (props: any) => {
                                         }
                                         _icon={{
                                             color: 'red.600',
-                                            size: 'md',
+                                            size: 'xl',
                                         }}
                                         _hover={{
                                             bg: 'red.500:alpha.20',

@@ -82,7 +82,7 @@ const Login = () => {
                     flex="1"
                     ml="2"
                     borderRadius={'0'}
-                    bg={toShow === 'Login' ? 'red.600' : 'gray.200'}
+                    bg={toShow === 'Login' ? 'red.600' : 'muted.600'}
                     onPress={() => {
                         updateToShow('Login')
                     }}
@@ -93,7 +93,7 @@ const Login = () => {
                     flex="1"
                     mr="2"
                     borderRadius={'0'}
-                    bg={toShow === 'Register' ? 'red.600' : 'gray.200'}
+                    bg={toShow === 'Register' ? 'red.600' : 'muted.600'}
                     onPress={() => {
                         updateToShow('Register')
                     }}

@@ -87,7 +87,7 @@ const Home = (props: any) => {
                         }
                         _icon={{
                             color: 'red.600',
-                            size: 'md',
+                            size: 'xl',
                         }}
                         _hover={{
                             bg: 'red.500:alpha.20',
