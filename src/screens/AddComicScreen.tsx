@@ -247,7 +247,7 @@ const AddComicScreen = (props: any) => {
                         >
                             <Modal.CloseButton bg="white" />
 
-                            <Modal.Header>
+                            <Modal.Header bg="muted.600">
                                 <Text color="white" fontSize={16}>
                                     Input Comic Issue Number
                                 </Text>
