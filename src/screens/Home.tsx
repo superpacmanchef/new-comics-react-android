@@ -112,10 +112,10 @@ const Home = (props: any) => {
                     updateShowModal(false)
                 }}
             >
-                <Modal.Content maxWidth="400px" height={'340px'} bg="muted.500">
+                <Modal.Content maxWidth="400px" height={'380px'} bg="muted.600">
                     <Modal.CloseButton bg="white" />
 
-                    <Modal.Header>
+                    <Modal.Header bg="muted.600">
                         <Text color="white" fontSize={16}>
                             Filter
                         </Text>
@@ -126,7 +126,7 @@ const Home = (props: any) => {
                                 <Text color="white">Week</Text>
                             </FormControl.Label>
                             <Select
-                                _actionSheetContent={{ bgColor: 'muted.500' }}
+                                _actionSheetContent={{ bgColor: 'muted.600' }}
                                 bgColor="white"
                                 selectedValue={currentChosenWeek.toString()}
                                 minWidth="200"
@@ -134,7 +134,7 @@ const Home = (props: any) => {
                                 placeholder="Choose Week"
                                 _selectedItem={{
                                     bg: 'red.500',
-                                    endIcon: <CheckIcon size="5" />,
+                                    endIcon: <CheckIcon size="6" />,
                                 }}
                                 mt={1}
                                 onValueChange={(itemValue) =>
@@ -144,18 +144,19 @@ const Home = (props: any) => {
                                 <Select.Item
                                     label="Last Week"
                                     value="0"
+                                    bg="muted.600"
                                     _text={{ color: 'white' }}
                                 />
                                 <Select.Item
                                     label="Current Week"
                                     value="1"
-                                    color="white"
+                                    bg="muted.600"
                                     _text={{ color: 'white' }}
                                 />
                                 <Select.Item
                                     label="Next Week"
                                     value="2"
-                                    color="white"
+                                    bg="muted.600"
                                     _text={{ color: 'white' }}
                                 />
                             </Select>
@@ -165,7 +166,7 @@ const Home = (props: any) => {
                                 <Text color="white">Publisher</Text>
                             </FormControl.Label>
                             <Select
-                                _actionSheetContent={{ bgColor: 'muted.500' }}
+                                _actionSheetContent={{ bgColor: 'gray.600' }}
                                 bgColor="white"
                                 selectedValue={currentPublisher}
                                 minWidth="200"
@@ -184,31 +185,36 @@ const Home = (props: any) => {
                                     label="All"
                                     value="ALL"
                                     _text={{ color: 'white' }}
+                                    bg="muted.600"
                                 />
                                 <Select.Item
                                     label="Marvel"
                                     value="MARVEL COMICS"
                                     _text={{ color: 'white' }}
+                                    bg="muted.600"
                                 />
                                 <Select.Item
                                     label="Image"
                                     value="IMAGE COMICS"
                                     _text={{ color: 'white' }}
+                                    bg="muted.600"
                                 />
                                 <Select.Item
                                     label="Dark Horse"
                                     value="DARK HORSE COMICS"
                                     _text={{ color: 'white' }}
+                                    bg="muted.600"
                                 />
                                 <Select.Item
                                     label="IDW"
                                     value="IDW COMICS"
                                     _text={{ color: 'white' }}
+                                    bg="muted.600"
                                 />
                             </Select>
                         </FormControl>
                     </Modal.Body>
-                    <Modal.Footer bg="muted.500">
+                    <Modal.Footer bg="muted.600">
                         <MainButton
                             onPress={() => {
                                 getWeeksComics()

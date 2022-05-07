@@ -127,9 +127,8 @@ const Login = () => {
                                 color="white"
                                 mt="8"
                                 placeholder="Email"
-                                bg="muted.400"
-                                shadow="4"
                                 maxWidth="300px"
+                                variant="outline"
                             />
                             <Input
                                 color="white"
@@ -140,8 +139,6 @@ const Login = () => {
                                 type="password"
                                 mt="8"
                                 placeholder="Password"
-                                bg="muted.400"
-                                shadow="4"
                                 maxWidth="300px"
                             />
                             <Box mt={5}>
@@ -167,8 +164,6 @@ const Login = () => {
                                 color="white"
                                 mt="8"
                                 placeholder="Email"
-                                bg="muted.400"
-                                shadow="4"
                                 maxWidth="300px"
                             />
                             <Input
@@ -179,8 +174,6 @@ const Login = () => {
                                 placeholderTextColor="white"
                                 mt="8"
                                 placeholder="Username"
-                                bg="muted.400"
-                                shadow="4"
                                 maxWidth="300px"
                             />
                             <Input
@@ -192,8 +185,6 @@ const Login = () => {
                                 type="password"
                                 mt="8"
                                 placeholder="Password"
-                                bg="muted.400"
-                                shadow="4"
                                 maxWidth="300px"
                             />
                             <Input
@@ -207,8 +198,6 @@ const Login = () => {
                                 type="password"
                                 mt="8"
                                 placeholder="Password Repeat"
-                                bg="muted.400"
-                                shadow="4"
                                 maxWidth="300px"
                             />
                             <Box mt={5}>
